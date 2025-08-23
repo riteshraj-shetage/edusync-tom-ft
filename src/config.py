@@ -30,7 +30,7 @@ CHROME_OPTIONS = [
 ]
 
 # Default wait timeout (in seconds)
-DEFAULT_TIMEOUT = 10  # Used for Selenium waits and element detection
+DEFAULT_TIMEOUT = 10  
 
 # Headless toggle
 HEADLESS_MODE = True  # False: to launch with GUI
