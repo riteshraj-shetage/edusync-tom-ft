@@ -12,7 +12,10 @@ def get_student_info(driver):
         student_data["registration_no"] = raw_text.removeprefix("Reg No: ").strip()
 
     except Exception as e:
-        student_data["error"] = str(e)
+        student_data["error"] = {
+        "type": type(e).__name__,
+        "message": str(e)
+    }
     return student_data
 
 def get_attendance(driver):
@@ -52,7 +55,10 @@ def get_attendance(driver):
         attendance_data["subject_wise"] = sub_attendance
 
     except Exception as e:
-        attendance_data["error"] = str(e)
+        attendance_data["error"] = {
+            "type": type(e).__name__,
+            "message": str(e)
+        }
 
     return attendance_data
 
