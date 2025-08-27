@@ -14,7 +14,7 @@ def save_json(student_data, attendance_data, filename=DEFAULT_OUTPUT_FILE):
     new_entry = {
         "timestamp": timestamp,
         "student_info": student_data,
-        "attendance": attendance_data
+        "attendance_info": attendance_data
     }
 
     try:
