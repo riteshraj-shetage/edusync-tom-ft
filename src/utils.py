@@ -11,26 +11,44 @@ def wait_for(driver, by, selector, condition=EC.presence_of_element_located, tim
 
 def save_json(student_data, attendance_data, filename=DEFAULT_OUTPUT_FILE):
     timestamp = datetime.now().strftime("%d-%b-%Y %I:%M %p")
-    output = {
+    new_entry = {
         "timestamp": timestamp,
         "student_info": student_data,
         "attendance": attendance_data
     }
 
+    try:
+        with open(filename, "r", encoding="utf-8") as f:
+            existing_data = json.load(f)
+            if not isinstance(existing_data, list):
+                existing_data = [existing_data]
+    except (FileNotFoundError, json.JSONDecodeError):
+        existing_data = []
+
+    existing_data.append(new_entry)
+
     with open(filename, "w", encoding="utf-8") as f:
-        json.dump(output, f, indent=4, ensure_ascii=False)
+        json.dump(existing_data, f, indent=4, ensure_ascii=False)
+
 
 def out_json(filename=DEFAULT_OUTPUT_FILE):
     try:
         with open(filename, "r", encoding="utf-8") as f:
             data = json.load(f)
-        print("\nFetched Payload:")
-        print(json.dumps(data, indent=4, ensure_ascii=False))
+
+        if isinstance(data, list) and data:
+            latest = data[-1]
+            print("\nLatest Fetched Payload:")
+            print(json.dumps(latest, indent=4, ensure_ascii=False))
+        else:
+            print("No data found or unexpected format.")
         print("\n")
     except FileNotFoundError:
         print(f"File '{filename}' not found.")
     except json.JSONDecodeError as e:
         print(f"Failed to parse JSON: {e}")
+
+
 
 def write_log(message, log_file=LOG_FILE, separator=False):
     timestamp = datetime.now().strftime("%d-%b-%Y %I:%M:%S %p")

@@ -5,6 +5,11 @@ BASE_URL = "https://learnerrscoe.edupluscampus.com/"
 DASHBOARD_URL = BASE_URL + "Dashboard"
 IDCARD_URL = BASE_URL + "Idcard"
 ATTENDANCE_URL = BASE_URL + "attendance"
+LESSONS_URL = BASE_URL + "lessonplan"
+PROFILE_URL = BASE_URL + "profile"
+ASSIGNMENT_URL = BASE_URL + "ASPORTAL"
+QUIZ_URL = BASE_URL + "quiz"
+
 
 # Environment file
 ENV_PATH = Path(__file__).parent.parent / "config" / "credentials.env"
@@ -18,6 +23,7 @@ SELECTORS = {
     "department": "dept",
     "reg_no": "reg-no",
     "attendance_container": 'div.v-col-sm-12.v-col',
+    "attendance_table": "mytableid",
     "progress_circle": 'div.v-progress-circular[role="progressbar"]',
     "profile_button": 'button[aria-owns="v-menu-14"]',
     "logout_link": 'a[href="/"]'

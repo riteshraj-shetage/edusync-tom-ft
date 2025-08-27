@@ -1,10 +1,10 @@
 from auth import login, logout
 from scraper import get_student_info, get_attendance
-from driver import cleanup_driver, init_driver
+from driver import init_driver
 from utils import save_json, out_json, write_log
 
 def main():
-    cleanup_driver()
+    # cleanup_driver()
     driver = init_driver()
     driver.delete_all_cookies()
 
@@ -12,10 +12,8 @@ def main():
         print("Successfully Logged in!")
         write_log("Login successful")
 
-
         student_info = get_student_info(driver)
         write_log("Student info fetched")
-
 
         attendance_info = get_attendance(driver)
         write_log("Attendance info fetched")

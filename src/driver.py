@@ -2,15 +2,15 @@ import os, platform, time
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
+# from webdriver_manager.chrome import ChromeDriverManager
 from config import CHROME_OPTIONS, HEADLESS_MODE
 
-def cleanup_driver():
-    if platform.system() == "Windows":
-        os.system("taskkill /f /im chromedriver.exe >nul 2>&1")
-    elif platform.system() == "Linux":
-        os.system("pkill -f chromedriver")
-    time.sleep(2)
+# def cleanup_driver():
+#     if platform.system() == "Windows":
+#         os.system("taskkill /f /im chromedriver.exe >nul 2>&1")
+#     elif platform.system() == "Linux":
+#         os.system("pkill -f chromedriver")
+#     time.sleep(2)
 
 def init_driver():
     options = Options()
@@ -24,6 +24,7 @@ def init_driver():
     else:
         options.add_argument("--start-maximized")
 
-    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+    # driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+    driver = webdriver.Chrome(service=Service(), options=options)
 
     return driver
