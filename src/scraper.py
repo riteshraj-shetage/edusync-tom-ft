@@ -1,6 +1,7 @@
 from selenium.webdriver.common.by import By
-from config import SELECTORS, IDCARD_URL, ATTENDANCE_URL, LESSONS_URL, FIELD_MAP
-from src.config import PROFILE_URL
+from config import SELECTORS, IDCARD_URL, ATTENDANCE_URL, LESSONS_URL, FIELD_MAP, DEFAULT_TIMEOUT
+from src.config import PROFILE_URL, FEEDBACK_URL
+from src.utils import wait_for_page_change
 from utils import wait_for
 
 def click_tab(driver, tab_text):
@@ -112,6 +113,25 @@ def get_attendance(driver):
         }
 
     return attendance_data
+
+# def select_all_fives(driver):
+#     try:
+#         radios = driver.find_elements(By.XPATH, "//input[@type='radio']")
+#         for radio in radios:
+#             if radio.get_attribute("value") == "5":
+#                 driver.execute_script("arguments[0].click();", radio)
+#         return True
+#     except Exception:
+#         return False
+
+# def auto_feedback(driver):
+#     driver.get(FEEDBACK_URL)
+#     click_tab(driver,"PROCEED")
+#     wait_for_page_change(driver, DEFAULT_TIMEOUT)
+#     click_tab(driver, "PROCEED")
+#     wait_for_page_change(driver, DEFAULT_TIMEOUT)
+#     select_all_fives(driver)
+#     click_tab(driver, "SAVE AND PROCEED")
 
 
 # def get_assignment(driver):

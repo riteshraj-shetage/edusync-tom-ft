@@ -9,7 +9,7 @@ LESSONS_URL = BASE_URL + "lessonplan"
 PROFILE_URL = BASE_URL + "profile"
 ASSIGNMENT_URL = BASE_URL + "ASPORTAL"
 QUIZ_URL = BASE_URL + "quiz"
-
+FEEDBACK_URL = BASE_URL + "student-feedback"
 
 # Environment file
 ENV_PATH = Path(__file__).parent.parent / "config" / "credentials.env"
@@ -92,7 +92,7 @@ CHROME_OPTIONS = [
 DEFAULT_TIMEOUT = 5
 
 # Headless toggle
-HEADLESS_MODE = True
+HEADLESS_MODE = False
 
 # Output Config And Path
 DEFAULT_OUTPUT_FILE = Path(__file__).parent.parent / "data" / "payload.json"

@@ -2144,5 +2144,234 @@
                 }
             ]
         }
+    },
+    {
+        "timestamp": "28-Aug-2025 02:37 PM",
+        "student_info": {
+            "student_name": "CHAITANYA DILIP SHETE",
+            "department": "Master of Computer Applications",
+            "registration_no": "RMC24MC057",
+            "student_fullname": null,
+            "student_fname": null,
+            "student_lname": null,
+            "date_of_birth": "2003-02-15",
+            "blood_group": "AB Positive",
+            "email_address": null,
+            "mobile_number": "7823838783",
+            "permanent_address": "A/11 Nisarg Colony , Jawalkar Nagar , PImple Gurav Pune",
+            "local_address": "A/11 Nisarg Colony , Jawalkar Nagar , PImple Gurav Pune"
+        },
+        "attendance_info": {
+            "overall-attendance": 65.38,
+            "subject_wise": [
+                {
+                    "course_code": "HS242107L",
+                    "course_name": "Universal Human Values",
+                    "course_type": "Lab",
+                    "attendance": 60.0
+                },
+                {
+                    "course_code": "MCA242101T",
+                    "course_name": "Research Methodology",
+                    "course_type": "Theory",
+                    "attendance": 70.0
+                },
+                {
+                    "course_code": "MCA242102DL",
+                    "course_name": "Framework – Springboot LAB",
+                    "course_type": "Lab",
+                    "attendance": 80.0
+                },
+                {
+                    "course_code": "MCA242102DT",
+                    "course_name": "Framework – Springboot",
+                    "course_type": "Theory",
+                    "attendance": 66.67
+                },
+                {
+                    "course_code": "MCA242103L",
+                    "course_name": "Emerging Software Testing and Tools LAB",
+                    "course_type": "Lab",
+                    "attendance": 0.0
+                },
+                {
+                    "course_code": "MCA242103T",
+                    "course_name": "Emerging Software Testing and Tools",
+                    "course_type": "Theory",
+                    "attendance": 66.67
+                },
+                {
+                    "course_code": "MCA242104T",
+                    "course_name": "Principles and practices of Management & Organization Behaviour",
+                    "course_type": "Theory",
+                    "attendance": 53.33
+                },
+                {
+                    "course_code": "MCA242105T",
+                    "course_name": "Cloud Computing",
+                    "course_type": "Theory",
+                    "attendance": 70.59
+                },
+                {
+                    "course_code": "MCA242106L",
+                    "course_name": "Research Project",
+                    "course_type": "Lab",
+                    "attendance": 75.0
+                }
+            ]
+        }
+    },
+    {
+        "timestamp": "28-Aug-2025 02:39 PM",
+        "student_info": {
+            "error": {
+                "type": "TimeoutException",
+                "message": "Message: \nStacktrace:\n\tGetHandleVerifier [0x0x7ff772883d85+79397]\n\tGetHandleVerifier [0x0x7ff772883de0+79488]\n\t(No symbol) [0x0x7ff77262c0fa]\n\t(No symbol) [0x0x7ff772682fd6]\n\t(No symbol) [0x0x7ff77268328c]\n\t(No symbol) [0x0x7ff7726d6537]\n\t(No symbol) [0x0x7ff7726ab1df]\n\t(No symbol) [0x0x7ff7726d3344]\n\t(No symbol) [0x0x7ff7726aaf73]\n\t(No symbol) [0x0x7ff7726741b1]\n\t(No symbol) [0x0x7ff772674f43]\n\tGetHandleVerifier [0x0x7ff772b4e1ed+3005069]\n\tGetHandleVerifier [0x0x7ff772b4831d+2980797]\n\tGetHandleVerifier [0x0x7ff772b67e0d+3110573]\n\tGetHandleVerifier [0x0x7ff77289d6de+184190]\n\tGetHandleVerifier [0x0x7ff7728a516f+215567]\n\tGetHandleVerifier [0x0x7ff77288c974+115220]\n\tGetHandleVerifier [0x0x7ff77288cb29+115657]\n\tGetHandleVerifier [0x0x7ff772873268+11016]\n\tBaseThreadInitThunk [0x0x7ffa635ae8d7+23]\n\tRtlUserThreadStart [0x0x7ffa6529c5dc+44]\n"
+            },
+            "student_fullname": null,
+            "student_fname": null,
+            "student_lname": null,
+            "date_of_birth": "2003-03-07",
+            "blood_group": "A Positive",
+            "email_address": null,
+            "mobile_number": "8600029971",
+            "permanent_address": "Shinde Galli, A/P- Turambe, Tal- Radhanagari, Dist- Kolhapur, Pin Code- 416208",
+            "local_address": null
+        },
+        "attendance_info": {
+            "overall-attendance": 99.03,
+            "subject_wise": [
+                {
+                    "course_code": "HS242107L",
+                    "course_name": "Universal Human Values",
+                    "course_type": "Lab",
+                    "attendance": 100.0
+                },
+                {
+                    "course_code": "MCA242101T",
+                    "course_name": "Research Methodology",
+                    "course_type": "Theory",
+                    "attendance": 95.0
+                },
+                {
+                    "course_code": "MCA242102CL",
+                    "course_name": "Artificial Intelligence and Machine Learning LAB",
+                    "course_type": "Lab",
+                    "attendance": 100.0
+                },
+                {
+                    "course_code": "MCA242102CT",
+                    "course_name": "Artificial Intelligence and Machine Learning",
+                    "course_type": "Theory",
+                    "attendance": 100.0
+                },
+                {
+                    "course_code": "MCA242103L",
+                    "course_name": "Emerging Software Testing and Tools LAB",
+                    "course_type": "Lab",
+                    "attendance": 100.0
+                },
+                {
+                    "course_code": "MCA242103T",
+                    "course_name": "Emerging Software Testing and Tools",
+                    "course_type": "Theory",
+                    "attendance": 100.0
+                },
+                {
+                    "course_code": "MCA242104T",
+                    "course_name": "Principles and practices of Management & Organization Behaviour",
+                    "course_type": "Theory",
+                    "attendance": 100.0
+                },
+                {
+                    "course_code": "MCA242105T",
+                    "course_name": "Cloud Computing",
+                    "course_type": "Theory",
+                    "attendance": 100.0
+                },
+                {
+                    "course_code": "MCA242106L",
+                    "course_name": "Research Project",
+                    "course_type": "Lab",
+                    "attendance": 100.0
+                }
+            ]
+        }
+    },
+    {
+        "timestamp": "30-Aug-2025 11:31 PM",
+        "student_info": {
+            "student_name": "RITESHRAJ BHARAT SHETAGE",
+            "department": "Master of Computer Applications",
+            "registration_no": "RMC24MC056",
+            "student_fullname": null,
+            "student_fname": null,
+            "student_lname": null,
+            "date_of_birth": "2003-03-07",
+            "blood_group": "",
+            "email_address": null,
+            "mobile_number": "8600029971",
+            "permanent_address": "Shinde Galli, A/P- Turambe, Tal- Radhanagari, Dist- Kolhapur, Pin Code- 416208",
+            "local_address": "B-301, Sukhwani Artize, Pimpri Chinchwad, Pune"
+        },
+        "attendance_info": {
+            "overall-attendance": 99.04,
+            "subject_wise": [
+                {
+                    "course_code": "HS242107L",
+                    "course_name": "Universal Human Values",
+                    "course_type": "Lab",
+                    "attendance": 100.0
+                },
+                {
+                    "course_code": "MCA242101T",
+                    "course_name": "Research Methodology",
+                    "course_type": "Theory",
+                    "attendance": 95.0
+                },
+                {
+                    "course_code": "MCA242102CL",
+                    "course_name": "Artificial Intelligence and Machine Learning LAB",
+                    "course_type": "Lab",
+                    "attendance": 100.0
+                },
+                {
+                    "course_code": "MCA242102CT",
+                    "course_name": "Artificial Intelligence and Machine Learning",
+                    "course_type": "Theory",
+                    "attendance": 100.0
+                },
+                {
+                    "course_code": "MCA242103L",
+                    "course_name": "Emerging Software Testing and Tools LAB",
+                    "course_type": "Lab",
+                    "attendance": 100.0
+                },
+                {
+                    "course_code": "MCA242103T",
+                    "course_name": "Emerging Software Testing and Tools",
+                    "course_type": "Theory",
+                    "attendance": 100.0
+                },
+                {
+                    "course_code": "MCA242104T",
+                    "course_name": "Principles and practices of Management & Organization Behaviour",
+                    "course_type": "Theory",
+                    "attendance": 100.0
+                },
+                {
+                    "course_code": "MCA242105T",
+                    "course_name": "Cloud Computing",
+                    "course_type": "Theory",
+                    "attendance": 100.0
+                },
+                {
+                    "course_code": "MCA242106L",
+                    "course_name": "Research Project",
+                    "course_type": "Lab",
+                    "attendance": 100.0
+                }
+            ]
+        }
     }
 ]

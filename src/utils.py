@@ -9,6 +9,18 @@ def wait_for(driver, by, selector, condition=EC.presence_of_element_located, tim
     wait = WebDriverWait(driver, timeout)
     return wait.until(condition((by, selector)))
 
+def wait_for_page_change(driver, DEFAULT_TIMEOUT):
+    old_dom = driver.find_element("tag name", "body").get_attribute("innerHTML")
+
+    def dom_changed(d):
+        try:
+            new_dom = d.find_element("tag name", "body").get_attribute("innerHTML")
+            return new_dom != old_dom
+        except:
+            return False
+
+    WebDriverWait(driver, DEFAULT_TIMEOUT).until(dom_changed)
+
 def save_json(student_data, attendance_data, filename=DEFAULT_OUTPUT_FILE):
     timestamp = datetime.now().strftime("%d-%b-%Y %I:%M %p")
     new_entry = {
