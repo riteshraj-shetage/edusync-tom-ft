@@ -1,8 +1,9 @@
 from selenium.webdriver.common.by import By
-from config import SELECTORS, IDCARD_URL, ATTENDANCE_URL, LESSONS_URL, FIELD_MAP, DEFAULT_TIMEOUT
-from src.config import PROFILE_URL, FEEDBACK_URL
-from src.utils import wait_for_page_change
-from utils import wait_for
+from selenium.webdriver.support.wait import WebDriverWait
+
+from config import SELECTORS, TABLES, FIELD_MAP, XPATH, DEFAULT_TIMEOUT, PAGES
+from utils import wait_for, wait_for_page_change
+
 
 def click_tab(driver, tab_text):
     try:
@@ -14,24 +15,24 @@ def click_tab(driver, tab_text):
 
 def resolve_field(driver, label_text, field_type):
     try:
-        label = wait_for(driver, By.XPATH, f"//p[contains(., '{label_text}')]")
+        label = wait_for(driver, By.XPATH, f"//label[contains(., '{label_text}')]")
+        xpath = XPATH[field_type]
 
-        if field_type == "input":
-            el = label.find_element(By.XPATH, ".//following::input[1]")
+        if field_type == "static":
+            el = label.find_element(By.XPATH, xpath)
+            return el.text.strip()
+
+        elif field_type == "input":
+            el = label.find_element(By.XPATH, xpath)
             return el.get_attribute("value").strip()
 
         elif field_type == "dropdown":
-            el = label.find_element(By.XPATH, ".//following::span[contains(@class, 'v-autocomplete__selection-text')]")
+            el = label.find_element(By.XPATH, xpath)
             return el.text.strip()
 
         elif field_type == "textarea":
-            el = label.find_element(By.XPATH, ".//following::textarea[1]")
+            el = label.find_element(By.XPATH, xpath)
             return el.get_attribute("value").strip()
-
-        elif field_type == "static":
-            label = wait_for(driver, By.XPATH, f"//label[contains(., '{label_text}')]")
-            el = label.find_element(By.XPATH, "following-sibling::h4")
-            return el.text.strip()
 
     except Exception:
         return None
@@ -39,7 +40,10 @@ def resolve_field(driver, label_text, field_type):
 
 
 def get_student_info(driver):
-    driver.get(IDCARD_URL)
+    driver.get(PAGES["idcard"])
+    wait_for_page_change(driver, DEFAULT_TIMEOUT)
+    WebDriverWait(driver, DEFAULT_TIMEOUT).until(lambda d: d.execute_script("return document.readyState") == "complete")
+
     student_data = {}
 
     try:
@@ -53,7 +57,7 @@ def get_student_info(driver):
             "message": str(e)
         }
 
-    driver.get(PROFILE_URL)
+    driver.get(PAGES["profile"])
     try:
         for key, config in FIELD_MAP.items():
             if "tab" in config:
@@ -71,11 +75,10 @@ def get_student_info(driver):
 
 
 def get_attendance(driver):
-    driver.get(ATTENDANCE_URL)
+    driver.get(PAGES["attendance"])
     attendance_data = {}
 
     try:
-        # Extract overall percentage
         parent = wait_for(driver, By.CSS_SELECTOR, SELECTORS["attendance_container"])
         progress = parent.find_element(By.CSS_SELECTOR, SELECTORS["progress_circle"])
         value = progress.get_attribute("aria-valuenow")
@@ -85,8 +88,8 @@ def get_attendance(driver):
             attendance_data["overall-attendance"] = None
 
         # Extract subject-wise attendance
-        driver.get(LESSONS_URL)
-        table_div = wait_for(driver, By.ID, SELECTORS["attendance_table"])
+        driver.get(PAGES["lessons"])
+        table_div = wait_for(driver, By.ID, TABLES["attendance_table"])
         rows = table_div.find_elements(By.CSS_SELECTOR, "tbody tr")
 
         sub_attendance = []
@@ -114,34 +117,36 @@ def get_attendance(driver):
 
     return attendance_data
 
-# def select_all_fives(driver):
-#     try:
-#         radios = driver.find_elements(By.XPATH, "//input[@type='radio']")
-#         for radio in radios:
-#             if radio.get_attribute("value") == "5":
-#                 driver.execute_script("arguments[0].click();", radio)
-#         return True
-#     except Exception:
-#         return False
-
-# def auto_feedback(driver):
-#     driver.get(FEEDBACK_URL)
-#     click_tab(driver,"PROCEED")
-#     wait_for_page_change(driver, DEFAULT_TIMEOUT)
-#     click_tab(driver, "PROCEED")
-#     wait_for_page_change(driver, DEFAULT_TIMEOUT)
-#     select_all_fives(driver)
-#     click_tab(driver, "SAVE AND PROCEED")
-
 
 # def get_assignment(driver):
-#     driver.get(ASSIGNMENT_URL)
+#     driver.get(PAGES["assignment"])
 #     assignments_data = {}
 #
+#     table_div = wait_for(driver, By.ID, SELECTORS["assignment_table"])
+#
 #     return assignments_data
-#
-# def get_quiz(driver):
-#     driver.get(QUIZ_URL)
-#     quizzes_data = {}
-#
-#     return quizzes_data
+
+def get_quiz(driver):
+    driver.get(PAGES["quiz"])
+    quizzes_data = {}
+
+    table_div = wait_for(driver, By.ID, TABLES["quiz_table"])
+    rows = table_div.find_elements(By.CSS_SELECTOR, "tbody tr")
+
+    quizzes = []
+
+    for row in rows:
+        cells = row.find_elements(By.TAG_NAME, "td")
+        if len(cells) >= 5:
+            quiz_title = cells[4].text.strip()
+            quiz_date = cells[5].text.strip()
+            marks_obtained = cells[8].text.strip()
+            quizzes.append({
+                            "quiz_name": quiz_title,
+                            "quiz_date": quiz_date,
+                            "quiz_marks": marks_obtained,
+            })
+
+    quizzes_data["Past Quizzes"] = quizzes
+
+    return quizzes_data

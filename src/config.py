@@ -1,18 +1,24 @@
 from pathlib import Path
 
-# URLs
+# Base URL
 BASE_URL = "https://learnerrscoe.edupluscampus.com/"
-DASHBOARD_URL = BASE_URL + "Dashboard"
-IDCARD_URL = BASE_URL + "Idcard"
-ATTENDANCE_URL = BASE_URL + "attendance"
-LESSONS_URL = BASE_URL + "lessonplan"
-PROFILE_URL = BASE_URL + "profile"
-ASSIGNMENT_URL = BASE_URL + "ASPORTAL"
-QUIZ_URL = BASE_URL + "quiz"
-FEEDBACK_URL = BASE_URL + "student-feedback"
 
-# Environment file
+# Page URLs
+PAGES = {
+    "dashboard": f"{BASE_URL}Dashboard",
+    "idcard": f"{BASE_URL}Idcard",
+    "attendance": f"{BASE_URL}attendance",
+    "lessons": f"{BASE_URL}lessonplan",
+    "profile": f"{BASE_URL}profile",
+    "assignment": f"{BASE_URL}ASPORTAL",
+    "quiz": f"{BASE_URL}quiz"
+}
+
+
+# File Path
 ENV_PATH = Path(__file__).parent.parent / "config" / "credentials.env"
+DATA_FILE = Path(__file__).parent.parent / "data" / "payload.json"
+LOG_FILE = Path(__file__).parent.parent / "logs" / "status.log"
 
 # Selectors
 SELECTORS = {
@@ -29,14 +35,18 @@ SELECTORS = {
     "static_value": "following-sibling::h4",
     # Attendance
     "attendance_container": 'div.v-col-sm-12.v-col',
-    "attendance_table": "mytableid",
     "progress_circle": 'div.v-progress-circular[role="progressbar"]',
     "profile_button": 'button[aria-owns="v-menu-14"]',
     "logout_link": 'a[href="/"]'
+}
+
+TABLES = {
+    # Attendance
+    "attendance_table": "mytableid",
     # Assignment
-    # yet to be implemented
+    "assignment_table": 'assignmenttable',
     # Quiz
-    # some another day...
+    "quiz_table": 'tableid'
 }
 
 FIELD_MAP = {
@@ -60,13 +70,13 @@ FIELD_MAP = {
         "label": "Blood Group",
         "type": "dropdown"
     },
-    "email_address": {
-        "label": "Email(Official)",
-        "type": "static"
-    },
     "mobile_number": {
         "label": "Mobile Number",
         "type": "input"
+    },
+    "email_address": {
+        "label": "Email(Official)",
+        "type": "static"
     },
     "permanent_address": {
         "label": "Permanent Address",
@@ -80,7 +90,13 @@ FIELD_MAP = {
     }
 }
 
-
+# XPATH Selectors
+XPATH = {
+    "static": "./parent::div//h4",
+    "input": ".//following::input[1]",
+    "dropdown": ".//following::span[contains(@class, 'v-autocomplete__selection-text')]",
+    "textarea": ".//following::textarea[1]"
+}
 
 # Chrome Options
 CHROME_OPTIONS = [
@@ -92,9 +108,7 @@ CHROME_OPTIONS = [
 DEFAULT_TIMEOUT = 5
 
 # Headless toggle
-HEADLESS_MODE = False
+HEADLESS_MODE = True
 
-# Output Config And Path
-DEFAULT_OUTPUT_FILE = Path(__file__).parent.parent / "data" / "payload.json"
-LOG_FILE = Path(__file__).parent.parent / "logs" / "status.log"
+# Logging toggle
 ENABLE_LOGGING = True

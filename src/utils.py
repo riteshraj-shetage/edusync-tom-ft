@@ -2,7 +2,7 @@ import json
 from datetime import datetime
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from config import DEFAULT_TIMEOUT, DEFAULT_OUTPUT_FILE, LOG_FILE
+from config import DEFAULT_TIMEOUT, DATA_FILE, LOG_FILE
 
 
 def wait_for(driver, by, selector, condition=EC.presence_of_element_located, timeout=DEFAULT_TIMEOUT):
@@ -21,29 +21,20 @@ def wait_for_page_change(driver, DEFAULT_TIMEOUT):
 
     WebDriverWait(driver, DEFAULT_TIMEOUT).until(dom_changed)
 
-def save_json(student_data, attendance_data, filename=DEFAULT_OUTPUT_FILE):
+def save_json(student_data, attendance_data, quizzes_data, filename=DATA_FILE):
     timestamp = datetime.now().strftime("%d-%b-%Y %I:%M %p")
-    new_entry = {
+    payload = {
         "timestamp": timestamp,
         "student_info": student_data,
-        "attendance_info": attendance_data
+        "attendance_info": attendance_data,
+        "quizzes_info": quizzes_data
     }
 
-    try:
-        with open(filename, "r", encoding="utf-8") as f:
-            existing_data = json.load(f)
-            if not isinstance(existing_data, list):
-                existing_data = [existing_data]
-    except (FileNotFoundError, json.JSONDecodeError):
-        existing_data = []
-
-    existing_data.append(new_entry)
-
     with open(filename, "w", encoding="utf-8") as f:
-        json.dump(existing_data, f, indent=4, ensure_ascii=False)
+        json.dump(payload, f, indent=4, ensure_ascii=False)
 
 
-def out_json(filename=DEFAULT_OUTPUT_FILE):
+def out_json(filename=DATA_FILE):
     try:
         with open(filename, "r", encoding="utf-8") as f:
             data = json.load(f)
