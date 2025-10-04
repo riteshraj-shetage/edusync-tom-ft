@@ -1,4 +1,4 @@
-# Assignment & Quiz Automation Monitor
+# Automated Notification System
 
 This project automates the extraction and summarization of academic assignments and quizzes from dynamic web portals. It uses Playwright for browser automation and is designed to be modular, resilient, and developer-friendly.
 
